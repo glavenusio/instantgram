@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.phonegap.helloworld" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="Battery">
+        <param name="android-package" value="org.apache.cordova.batterystatus.BatteryListener" />
+    </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
+    </feature>
+    <feature name="Globalization">
+        <param name="android-package" value="org.apache.cordova.globalization.Globalization" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="Capture">
+        <param name="android-package" value="org.apache.cordova.mediacapture.Capture" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="Vibration">
+        <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
+    </feature>
+    <feature name="VideoPicturePreviewPickerV2">
+        <param name="android-package" value="com.sofienvppp2.VideoPicturePreviewPickerV2" />
+    </feature>
+    <feature name="ImagePicker">
+        <param name="android-package" value="com.synconset.ImagePicker" />
+    </feature>
+    <name>helloworld</name>
+    <description>
+        Hello World sample application that responds to the deviceready event.
+    </description>
+    <author email="support@phonegap.com" href="http://phonegap.com">
+        PhoneGap Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="market:*" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="14" />
+</widget>

@@ -1,0 +1,36 @@
+<!-- Statusbar overlay -->
+<div class="page" data-name="profile" data-url="/profile" data-push-state="true">
+    <div class="navbar head">
+      <div class="navbar-inner sliding" style="padding: 10px">
+        <div class="left">
+            <a href="#" class="panel-open" data-panel="left">
+              <i class="f7-icons">bars</i>
+            </a>
+        </div>
+        <div class="title" id="profileName" style="color: black">fetching...</div>
+        <div class="right">
+        </div>
+      </div>
+    </div>
+
+    <div class="page-content head" style="display: flex; flex-direction: column; ">
+      <!-- content -->
+      <div id="loadingAtProfile" style="border:none; height: 100%; display: flex; align-items: center; justify-content: center;">
+          <div  style="border:none" class="preloader color-gray"></div>
+      </div>
+      <div style="flex-grow:1; height: 100%">
+        <div id="img_collection" class="row no-gap">
+          <!-- image collection from js -->
+        </div>
+        
+        <div id="info_null_exp" style="row-gap: 1; flex-grow:1; display:flex; height: 80%; justify-content: center; align-items: center; flex-direction: column">
+
+            <i class="f7-icons" style="margin: 20px 0; color: #e5e5e5; font-size: 40px">info_round</i>
+            <p id="statusPostCollection" style="margin:0; font-size: 15px">You haven't post anything yet.</p>
+            <p class="text-align-center" style="margin:0; color: #aaaaaa">Share your experiences by uploading your content.</p>
+        </div>
+      </div>
+
+  </div>
+  
+</div>

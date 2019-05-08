@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="vpp_discard">stornieren</string>
+    <string name="vpp_done">erledigt</string>
+    <string name="vpp_from">Von</string>
+    <string name="vpp_limitMultiselect">Sie erreichen die Grenze</string>
+    <string name="vpp_noSelection">Wählen Sie zuerst ein Element aus</string>
+    <string name="vpp_AlreadyAdded">bereits hinzugefügt</string>
+</resources>
+

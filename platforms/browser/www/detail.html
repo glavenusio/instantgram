@@ -1,0 +1,52 @@
+<div class="page head" data-name="detail">
+    <div class="navbar head">
+      <div class="navbar-inner sliding" >
+          <div class="left">
+            <a class="link back">
+              <i class="f7-icons">arrow_left</i>
+              <span class="if-not-md"></span>
+            </a>
+          </div>
+        <div class="title" style="color: black">Photo</div>
+        <div class="right"> </div>
+      </div>
+    </div>
+          
+        <div style="padding: 30px 0 10px 0" class="page-content head block">
+          <div style="display: flex; flex-direction: row;  margin:0 0 10px 0; padding: 0px 20px; justify-content: space-between; align-items: center">
+            <p style="flex:1; font-weight: bold" id="postBy"></p>
+
+            <p id="removeController" class="link popover-open" data-popover=".popover-links"><i class="f7-icons">more</i> </p>
+
+          </div>
+
+          <div class="popover popover-links head">
+              <div class="popover-inner">
+                <div class="list">
+                  <ul>
+                    <li>
+                      <a style="font-size: 13px" class="open-confirm list-button item-link"> 
+                        <i style="font-size: 16px;color:#ff3b30" class="f7-icons">trash</i> Remove photo</a>
+                      </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+      
+          <div class="swiper-container demo-swiper demo-swiper-auto">
+            <div class="swiper-pagination"></div>
+            <div class="swiper-wrapper">
+              <!-- image resource goes here from js -->
+            </div>
+          </div>
+
+          <div style="padding: 0px 20px; margin: 0">
+            <div style="display: flex"> 
+              <p id="postByAfter" style="margin: 0 4px 0 0; font-weight: bold" > </p>
+              <span id="captionOfPost" style="font-weight: normal"> </span> 
+            </div>
+            <p style="color: grey; margin: 0" id="postDate"></p>
+          </div>
+        </div>  
+
+    </div>

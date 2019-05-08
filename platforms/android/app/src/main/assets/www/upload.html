@@ -1,0 +1,39 @@
+<!-- Statusbar overlay -->
+<div class="page" data-name="upload">
+    <div class="navbar head">
+        <div class="navbar-inner sliding">
+            <div class="left">
+            <a class="link back">
+                <i class="f7-icons">arrow_left</i>
+                <span class="if-not-md"></span>
+            </a>
+            </div>
+            <div style="color: black" class="title">Upload an image</div>
+            <div class="right"> </div>
+        </div>
+    </div>
+    
+    <div class="page-content head" style="display: flex; flex-direction: column;">
+        <div class="block">
+
+    <div class="row">
+        <input type="button" value="Camera" id="openCamera" style="border: .5px #ddd solid; margin-bottom: 4px" class="col color-grey button button-outline"/>
+        <input type="button" value="Gallery" id="openGallery" style="border: .5px #ddd solid; margin-bottom: 4px" class="col color-grey button button-outline"/>
+    </div>
+            <!-- <input type="button" id="openCamera" value="From Camera">
+            <input type="button" id="openGallery" value="From Gallery"> -->
+
+            <form id="imageForm" action="javascript:void(0)" enctype="multipart/form-data">
+                <textarea style="border-radius:6px; padding: 10px; height: 100px; width: 100%; margin: 20px 0; border: 1px solid #ddd" type="text" id="caption" placeholder="Place your caption..."></textarea>
+                <input type="submit" class="button button-raised button-fill" value="Publish">
+                
+            </form>
+            
+            <p id="status" class="text-align-center"></p>
+            <div style="margin-top: 20px" id="gallery" class="row">
+                    <!-- upload preview goes here -->
+            </div>
+        </div>
+    </div>
+</div>
+    

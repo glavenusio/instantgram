@@ -1,0 +1,58 @@
+{
+  "_from": "git+https://github.com/newsof1111/cordova-plugin-video-picture-preview-picker-V2.git",
+  "_id": "cordova-plugin-video-picture-preview-picker-v2@1.1.1",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-plugin-video-picture-preview-picker-v2",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/newsof1111/cordova-plugin-video-picture-preview-picker-V2.git",
+    "rawSpec": "https://github.com/newsof1111/cordova-plugin-video-picture-preview-picker-V2.git",
+    "saveSpec": "git+https://github.com/newsof1111/cordova-plugin-video-picture-preview-picker-V2.git",
+    "fetchSpec": "https://github.com/newsof1111/cordova-plugin-video-picture-preview-picker-V2.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/newsof1111/cordova-plugin-video-picture-preview-picker-V2.git#c114b73e97791342a69b2f731cb9b912106a52b1",
+  "_spec": "https://github.com/newsof1111/cordova-plugin-video-picture-preview-picker-V2.git",
+  "_where": "/home/fsd/Public/framework7/instantgram",
+  "author": {
+    "name": "soufien karray"
+  },
+  "bugs": {
+    "url": "https://github.com/newsof1111/cordova-plugin-video-picture-preview-picker-V2/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-video-picture-preview-picker-v2",
+    "platforms": [
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "This plugin allows selection of  image(s)/videos(s) with a smart preview  in a cordova app",
+  "engines": {
+    "name": "cordova",
+    "version": ">=3.0.0"
+  },
+  "homepage": "https://github.com/newsof1111/cordova-plugin-video-picture-preview-picker-V2#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "video",
+    "picture",
+    "picker",
+    "instagram"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-video-picture-preview-picker-v2",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newsof1111/cordova-plugin-video-picture-preview-picker-V2.git"
+  },
+  "version": "1.1.1"
+}
