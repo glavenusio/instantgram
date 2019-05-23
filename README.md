@@ -2,7 +2,16 @@
 
 App that can upload image like instagram. 
 
-## App Preview
+## Preview
 <p align="center">
-  <img alt="instantgram_preview" src="https://user-images.githubusercontent.com/34822808/58254709-8b2b9880-7d95-11e9-8f09-07df33d3d484.png">
+  <img alt="instantgram_preview" src="https://user-images.githubusercontent.com/34822808/58255851-19088300-7d98-11e9-9949-723ef8b10d68.png">
 </p>
+
+## Branch Info:
+### Client side:
+- master = for angular app
+- app_v2 = for cordova and f7 features
+
+### Server side:
+- php = for angular app
+- php_v2 = for cordova and f7 features
