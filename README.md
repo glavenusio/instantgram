@@ -10,7 +10,7 @@ App that can upload image like instagram.
 ## Branch Info
 ### Client side:
 - master = for angular app
-- app_v2 = for cordova and f7 app
+- cordova-f7 = for cordova and f7 app
 
 ### Server side:
 - php = for angular app
