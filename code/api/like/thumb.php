@@ -1,12 +1,12 @@
 <?php 
     require_once '../../config/fungsi.php';
 
-    $idposting = $_GET['idposting'];
-    $username = $_GET['username'];
+    $idposting = $_POST['idposting'];
+    $username = $_POST['username'];
 
     // check db, sudah di like atau belum
     $query = mysqli_query($koneksi, "SELECT * FROM jempol_like WHERE idposting = $idposting AND username = '$username'");
-    $liked = mysqli_fetch_assoc($query);
+    $liked = mysqli_num_rows($query);
     
     // apabila belum dilike insert otherwise delete
     if($liked == 0)

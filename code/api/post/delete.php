@@ -19,6 +19,8 @@
     
     mysqli_query($koneksi, "DELETE FROM gambar WHERE idposting = $idposting");
     mysqli_query($koneksi, "DELETE FROM posting WHERE idposting = $idposting");
+    mysqli_query($koneksi, "DELETE FROM jempol_like WHERE idposting = $idposting");
+    mysqli_query($koneksi, "DELETE FROM balasan_komen WHERE idposting = $idposting");
     
     json([
         'status' => 200,

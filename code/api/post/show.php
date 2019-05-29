@@ -22,7 +22,11 @@
     $query = mysqli_query($koneksi, "SELECT * FROM posting WHERE idposting = $idposting");
     $post_info = mysqli_fetch_assoc($query);
 
+    $query = mysqli_query($koneksi, "SELECT * FROM jempol_like WHERE idposting = $idposting");
+    $likes = mysqli_num_rows($query);
+
     $data['post_info'] = $post_info;
     $data['img_previews'] = $img_previews;
+    $data['likes'] = $likes;
 
     json($data);
