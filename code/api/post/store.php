@@ -27,7 +27,7 @@
     }
 
     json([
-        'info' => 'upload photos success',
+        'info' => 'upload success',
         'status' => 200,
         'image' => $validBase64
     ]);

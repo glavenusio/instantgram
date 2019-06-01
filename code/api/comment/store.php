@@ -7,5 +7,3 @@
     
     mysqli_query($koneksi, "INSERT INTO balasan_komen (idposting, username, isi_komen) 
                             VALUES ($idposting, '$username', '$isi_komen')");
-
-    

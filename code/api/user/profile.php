@@ -16,6 +16,8 @@
     $gallery = [];
     $encode = [];
 
+    // show posts only if ids are different
+    // if post have multiple image show only first image
     $tmp_id = -1;
     while ($result = mysqli_fetch_assoc($query)){
         if($result['idposting'] != $tmp_id){
