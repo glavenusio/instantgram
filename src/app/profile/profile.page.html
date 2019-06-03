@@ -13,6 +13,7 @@
 </ion-header>
 
 <ion-content>
+  <!-- <input type="text" (keyup)="likeChange($event)"> -->
   <ion-row>
     <ion-col size="4" size-md>
       <div class="ion-text-center">
@@ -32,6 +33,11 @@
     <ion-col size="4" size-md>
       <div class="ion-text-center">
         <img src="../../assets/icon/pexels-photo-414171.jpeg" width="120px" height="120px" />
+      </div>
+    </ion-col>
+    <ion-col size="4" size-md *ngFor="let image of encode">
+      <div (click)="detailPost(image.idposting)" class="ion-text-center">
+        <img [src]="image.encode" width="120px" height="120px" />
       </div>
     </ion-col>
   </ion-row>

@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { TabsPage } from './tabs.page';
+import { DataServiceResolver } from '../resolver/data-resolver.service';
 
 const routes: Routes = [
   {
@@ -13,11 +14,18 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: '../tab1/tab1.module#Tab1PageModule'
+        path: 'search',
+        loadChildren: '../search/search.module#SearchPageModule'
       },
       {
         path: 'profile',
+        loadChildren: '../profile/profile.module#ProfilePageModule'
+      },
+      {
+        path: 'profile/:id',
+        resolve: {
+          data: DataServiceResolver
+        },
         loadChildren: '../profile/profile.module#ProfilePageModule'
       },
     ]
