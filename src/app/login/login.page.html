@@ -1,0 +1,29 @@
+<ion-content class="ion-text-center">
+  <form (ngSubmit)="login()" style="padding: 110px 50px">
+    <div style="margin-bottom: 50px">
+      <p><b>instantgram</b></p>
+    </div>
+    <ion-item>
+      <ion-input style="font-size: 13px" [(ngModel)]="user.username" name="username" type="text" placeholder="username"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input style="font-size: 13px" [(ngModel)]="user.password" name="password" type="password" placeholder="password"></ion-input>
+    </ion-item>
+
+    <div style="margin-top: 40px">
+      <ion-button type="submit" expand="full" shape="round" style="font-size: 14px" color="primary">login</ion-button>
+    </div>
+
+    <div style="margin-top: 20px;">
+      <ion-badge color="danger">{{ info }}</ion-badge>
+    </div>
+    <img src="../../assets/img/bg-instagram.png">
+  </form>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title style="font-size: 14px; font-weight: normal" class="ion-text-center">&copy; revable media</ion-title>
+  </ion-toolbar>
+</ion-footer>

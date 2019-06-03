@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="end">
+      <ion-button (click)="showProfileOption()" color="dark">
+        <ion-icon slot="icon-only" name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="profile; else elseBlock">{{ profile.username }}</ion-title>
+    <ng-template #elseBlock>
+      <ion-title>loading</ion-title>
+    </ng-template>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="4" size-md>
+      <div class="ion-text-center">
+        <img src="../../assets/icon/dribbble_ratha_yathra_2019.png" width="120px" height="120px" />
+      </div>
+    </ion-col>
+    <ion-col size="4" size-md>
+      <div class="ion-text-center">
+        <img src="../../assets/img/bg-instagram.png" width="120px" height="120px" />
+      </div>
+    </ion-col>
+    <ion-col size="4" size-md>
+      <div class="ion-text-center">
+        <img src="../../assets/icon/download.jpeg" width="120px" height="120px" />
+      </div>
+    </ion-col>
+    <ion-col size="4" size-md>
+      <div class="ion-text-center">
+        <img src="../../assets/icon/pexels-photo-414171.jpeg" width="120px" height="120px" />
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

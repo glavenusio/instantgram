@@ -1,5 +1,7 @@
 {
   "name": "instantgram",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
