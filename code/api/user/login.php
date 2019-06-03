@@ -17,7 +17,7 @@
         $result = mysqli_fetch_assoc($query);
         
         $info['status'] = 200;
-        $info['data'] = $result;
+        $info['credential'] = $result;
 
         json($info);
     }
