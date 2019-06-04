@@ -10,7 +10,8 @@
             on p.username = u.username
         JOIN gambar g
             on g.idposting = p.idposting
-        WHERE u.username = '$username'"
+        WHERE u.username = '$username'
+        ORDER BY p.idposting ASC"
     );
 
     $gallery = [];
@@ -18,16 +19,16 @@
 
     // show posts only if ids are different
     // if post have multiple image show only first image
+    // case: multiple image that cooming once
     $tmp_id = -1;
     while ($result = mysqli_fetch_assoc($query)){
         if($result['idposting'] != $tmp_id){
             $name = $result['idgambar'].'.'.$result['extention'];
             $location = '../post/upload/'.$name;
-
+            
             array_push($gallery, $result);
             array_push($encode, base64_encode( file_get_contents( $location )));
         }
-            
         $tmp_id = $result['idposting'];
     }
     

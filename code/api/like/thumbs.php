@@ -15,3 +15,16 @@
         mysqli_query($koneksi, "DELETE FROM jempol_like 
                                 WHERE idposting = $idposting 
                                 AND username = '$username'");
+
+    $query = mysqli_query($koneksi, "SELECT * FROM jempol_like WHERE idposting = $idposting");
+    $likes = mysqli_num_rows($query);
+
+    $query = mysqli_query($koneksi, "SELECT * FROM jempol_like WHERE idposting = $idposting AND username = '$username'");
+    $result = mysqli_num_rows($query);
+    $liked = $result == 1 ? true : false;
+        
+    $info['status'] = 200;
+    $info['likes'] = $likes;
+    $info['liked'] = $liked;
+    
+    json($info);

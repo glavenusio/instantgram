@@ -21,12 +21,24 @@
 
     $query = mysqli_query($koneksi, "SELECT * FROM posting WHERE idposting = $idposting");
     $post_info = mysqli_fetch_assoc($query);
-
+    
+    $comment_collection = [];
+    $query = mysqli_query($koneksi, "SELECT * FROM balasan_komen WHERE idposting = $idposting");
+    while($result = mysqli_fetch_assoc($query)){
+        array_push($comment_collection, $result);
+    }
+    
     $query = mysqli_query($koneksi, "SELECT * FROM jempol_like WHERE idposting = $idposting");
     $likes = mysqli_num_rows($query);
+    
+    $query = mysqli_query($koneksi, "SELECT * FROM jempol_like WHERE idposting = $idposting AND username = '$username'");
+    $result = mysqli_num_rows($query);
+    $liked = $result == 1 ? true : false;
 
     $data['post_info'] = $post_info;
     $data['img_previews'] = $img_previews;
     $data['likes'] = $likes;
+    $data['liked'] = $liked;
+    $data['comments'] = $comment_collection;
 
     json($data);
