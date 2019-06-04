@@ -8,7 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ProfileOptionComponent } from './profile-option/profile-option.component';
+import { ProfileOptionComponent } from './popover/profile-option/profile-option.component';
 
 @NgModule({
   declarations: [AppComponent, ProfileOptionComponent],

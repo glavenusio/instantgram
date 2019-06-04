@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { SERVER_API, setLocalAuth } from '../utils';
 
 import axios from 'axios'
-import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +33,7 @@ export class LoginPage {
 
         if (status != 401) {
           setLocalAuth(credential.username)
+          
           router.navigateByUrl('/tabs/profile');
         } else {
           this.info = 'error: autentikasi gagal'

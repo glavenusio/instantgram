@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import axios from 'axios';
-import { SERVER_API, getAuth } from '../utils';
-import { ProfileOptionComponent } from '../profile-option/profile-option.component';
-import { ActivatedRoute } from '@angular/router';
+import { SERVER_API, getAuth, convertToBase64PNG } from '../utils';
+import { ProfileOptionComponent } from '../popover/profile-option/profile-option.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from '../service/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,19 +19,18 @@ export class ProfilePage implements OnInit {
   encode: Array<object>;
   loading: boolean;
 
-  text: string;
+  nopost: boolean = false;
 
-  constructor(public popoverController: PopoverController, private actvRoute: ActivatedRoute) { }
-
+  constructor(public popoverController: PopoverController,
+    private actvRoute: ActivatedRoute,
+    private dataService: DataService,
+    private router: Router) { }
 
   async ngOnInit() {
     if (this.actvRoute.snapshot.data['data'])
       this.username = this.actvRoute.snapshot.data['data'];
     else
       this.username = getAuth();
-    
-      console.log(this.actvRoute.snapshot.data['data']);
-      
 
     this.profileDetail();
   }
@@ -41,16 +41,9 @@ export class ProfilePage implements OnInit {
 
     this.profile = profile;
     this.gallery = gallery;
-    this.encode = new Array<object>();
+    this.encode = convertToBase64PNG(encode, gallery);
 
-    encode.map((enc: object, index: number) => {
-      let base64 = "data:image/png;base64,";
-      let final = base64 + enc;
-      this.encode.push({
-        idposting: gallery[index].idposting,
-        encode: final
-      });
-    })
+    if (this.encode.length <= 0) this.nopost = true;
 
     this.loading = false;
   }
@@ -65,12 +58,17 @@ export class ProfilePage implements OnInit {
     return await popover.present();
   }
 
-  async detailPost(id: any) {
-    console.log(id);
+  async detailPost(selectedId: any) {
+    const response = await axios.get(`${SERVER_API}/post/show.php?username=${getAuth()}&idposting=${selectedId}`)
+    const { idposting } = response.data.post_info;
+
+    this.dataService.setData(
+      idposting, // key
+      response.data.post_info // (data) set only id
+    );
+
+    this.router.navigateByUrl(`/tabs/post/${idposting}`);
 
   }
 
-  likeChange(event: any) {
-    console.log(event.target.value);
-  }
 }

@@ -1,44 +1,32 @@
 <ion-header>
   <ion-toolbar mode="ios">
+    <ion-title *ngIf="profile; else elseBlock">{{ profile.username }}</ion-title>
+    <ng-template #elseBlock>
+      <ion-title>loading</ion-title>
+    </ng-template>
     <ion-buttons slot="end">
       <ion-button (click)="showProfileOption()" color="dark">
         <ion-icon slot="icon-only" name="more"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title *ngIf="profile; else elseBlock">{{ profile.username }}</ion-title>
-    <ng-template #elseBlock>
-      <ion-title>loading</ion-title>
-    </ng-template>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <!-- <input type="text" (keyup)="likeChange($event)"> -->
-  <ion-row>
-    <ion-col size="4" size-md>
-      <div class="ion-text-center">
-        <img src="../../assets/icon/dribbble_ratha_yathra_2019.png" width="120px" height="120px" />
-      </div>
-    </ion-col>
-    <ion-col size="4" size-md>
-      <div class="ion-text-center">
-        <img src="../../assets/img/bg-instagram.png" width="120px" height="120px" />
-      </div>
-    </ion-col>
-    <ion-col size="4" size-md>
-      <div class="ion-text-center">
-        <img src="../../assets/icon/download.jpeg" width="120px" height="120px" />
-      </div>
-    </ion-col>
-    <ion-col size="4" size-md>
-      <div class="ion-text-center">
-        <img src="../../assets/icon/pexels-photo-414171.jpeg" width="120px" height="120px" />
-      </div>
-    </ion-col>
-    <ion-col size="4" size-md *ngFor="let image of encode">
-      <div (click)="detailPost(image.idposting)" class="ion-text-center">
-        <img [src]="image.encode" width="120px" height="120px" />
-      </div>
-    </ion-col>
-  </ion-row>
+<ion-content style="padding:0">
+  <ng-container *ngIf="nopost; else elseTemplate">
+    <ion-grid style="height: 100%; ">
+      <ion-row justify-content-center align-items-center style="height: 100%">
+        <span style="color:grey"> no post available at this time </span>
+      </ion-row>
+    </ion-grid>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <ion-row>
+      <ion-col *ngFor="let image of encode" style="padding: 0; margin: 0" size="4" size-md>
+        <div (click)="detailPost(image.idposting)" class="ion-text-center">
+          <img [src]="image.encode" width="120px" height="120px" />
+        </div>
+      </ion-col>
+    </ion-row>
+  </ng-template>
 </ion-content>

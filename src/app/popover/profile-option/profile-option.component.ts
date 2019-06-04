@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { destroyAuth } from '../utils';
+import { destroyAuth } from '../../utils';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 
@@ -17,6 +17,6 @@ export class ProfileOptionComponent implements OnInit {
   logout(){
     destroyAuth();
     this.popoverController.dismiss();
-    this.router.navigateByUrl('/login');
+    location.href = '/login';
   }
 }

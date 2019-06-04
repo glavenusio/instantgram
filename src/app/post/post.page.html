@@ -1,9 +1,58 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>post</ion-title>
+  <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="backToProfile()" color="dark">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Post</ion-title>
+    <ion-buttons slot="end" *ngIf="allowremove">
+      <ion-button color="dark">
+        <ion-icon slot="icon-only" name="remove"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  {{ data.username }}
+  <div *ngFor="let item of data">
+    <div class="ion-text-center">
+      <img [src]="item.encode" />
+    </div>
+  </div>
+
+  <div *ngIf="post" class="ion-padding">
+    <ion-row>
+      <ion-col size="12">
+        <!-- <ion-icon name="thumbs-up" (click)="thumbsup()" [ngStyle]="{'color': liked ? 'blue' : 'grey'}" style="color:blue; font-size: 28px; margin-right: 10px"></ion-icon> -->
+        <ion-icon name="heart" (click)="thumbsup()" [ngStyle]="{'color': liked ? 'red' : 'grey'}" style="color:blue; font-size: 28px; margin-right: 10px"></ion-icon>
+        <!-- <ion-icon [name]="liked ? 'heart' : 'heart-empty'" (click)="thumbsup()" [ngStyle]="{'color': liked ? 'red' : 'grey'}" style="color:blue; font-size: 28px; margin-right: 10px"></ion-icon> -->
+        <ion-icon style="color:grey; font-size: 28px; margin-right: 10px" name="chatbubbles"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ng-container *ngIf="_likes >= 1;">
+          <b>{{ likes }} </b>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <b>{{ post.username }}</b> {{ post.komen }}
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let comment of comments">
+      <ion-col size="12">
+        <b>{{ comment.username }}</b> {{ comment.isi_komen }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <form action="" (submit)="addComment()">
+          <ion-input [(ngModel)]="newcomment" name="newcomment" type="text" placeholder="Add a comment..."></ion-input>
+        </form>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

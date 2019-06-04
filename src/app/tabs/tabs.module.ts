@@ -18,6 +18,13 @@ const routes: Routes = [
         loadChildren: '../search/search.module#SearchPageModule'
       },
       {
+        path: 'post/:id',
+        resolve: {
+          data: DataServiceResolver
+        },
+        loadChildren: '../post/post.module#PostPageModule' 
+      },
+      {
         path: 'profile',
         loadChildren: '../profile/profile.module#ProfilePageModule'
       },
