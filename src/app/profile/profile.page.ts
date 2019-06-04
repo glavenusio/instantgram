@@ -24,8 +24,7 @@ export class ProfilePage implements OnInit {
   constructor(public popoverController: PopoverController,
     private actvRoute: ActivatedRoute,
     private dataService: DataService,
-    private router: Router,
-    private navCtrl: NavController) { }
+    private router: Router) { }
 
   async ngOnInit() {
     if (this.actvRoute.snapshot.data['data'])
