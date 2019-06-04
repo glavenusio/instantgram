@@ -38,7 +38,7 @@ export class ProfilePage implements OnInit {
   private async profileDetail() {
     const response = await axios.get(`${SERVER_API}/user/profile.php?username=${this.username}`);
     const { profile, gallery, encode } = response.data;
-
+    
     this.profile = profile;
     this.gallery = gallery;
     this.encode = convertToBase64PNG(encode, gallery);

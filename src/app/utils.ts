@@ -1,4 +1,4 @@
-export const SERVER_API = 'http://192.168.32.1:8080/api';
+export const SERVER_API = 'http://172.17.0.1:8080/api';
 const AUTH_LOCAL_KEY = 'auth';
 
 // untuk service autentikasi di provider router
