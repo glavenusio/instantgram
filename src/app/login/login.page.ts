@@ -33,13 +33,13 @@ export class LoginPage {
 
         if (status != 401) {
           setLocalAuth(credential.username)
-          
           router.navigateByUrl('/tabs/profile');
         } else {
           this.info = 'error: autentikasi gagal'
         }
       } catch (e) {
         console.error(e);
+        this.info = 'network error';
       }
     }
   }

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { SERVER_API, getAuth, convertCollectionToBase64PNG } from '../utils';
 import { Location } from '@angular/common'
+import { IonSlides } from '@ionic/angular';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-post',
@@ -19,7 +21,9 @@ export class PostPage implements OnInit {
   liked: boolean = false;
   comments: any;
   newcomment: string;
-  allowremove: boolean;
+  doslide: boolean;
+  slideOpts: object;
+  @ViewChild(IonSlides) slides: IonSlides;
 
   constructor(private actvRoute: ActivatedRoute, private location: Location) { }
 
@@ -29,13 +33,15 @@ export class PostPage implements OnInit {
       const response = await axios.get(`${SERVER_API}/post/show.php?username=${data.username}&idposting=${data.idposting}`)
       const { likes, liked, img_previews, post_info, comments } = response.data
 
-      this.allowremove = data.username == getAuth() ? true : false;
-      
       this.data = convertCollectionToBase64PNG(img_previews);
+
       this.setLike(likes, liked);
-      this.liked = liked;
+
       this.post = post_info;
+      this.post.tanggal = moment(this.post.tanggal, "YYYYMMDD").fromNow();
+
       this.comments = comments;
+      this.doslide = this.data.length > 1 ? true : false;
 
     } else {
       this.backToProfile();

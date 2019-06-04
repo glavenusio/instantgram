@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, NavController } from '@ionic/angular';
 import axios from 'axios';
 import { SERVER_API, getAuth, convertToBase64PNG } from '../utils';
 import { ProfileOptionComponent } from '../popover/profile-option/profile-option.component';
@@ -24,7 +24,8 @@ export class ProfilePage implements OnInit {
   constructor(public popoverController: PopoverController,
     private actvRoute: ActivatedRoute,
     private dataService: DataService,
-    private router: Router) { }
+    private router: Router,
+    private navCtrl: NavController) { }
 
   async ngOnInit() {
     if (this.actvRoute.snapshot.data['data'])
@@ -68,7 +69,6 @@ export class ProfilePage implements OnInit {
     );
 
     this.router.navigateByUrl(`/tabs/post/${idposting}`);
-
   }
 
 }

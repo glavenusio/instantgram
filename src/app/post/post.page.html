@@ -6,26 +6,31 @@
       </ion-button>
     </ion-buttons>
     <ion-title>Post</ion-title>
-    <ion-buttons slot="end" *ngIf="allowremove">
-      <ion-button color="dark">
-        <ion-icon slot="icon-only" name="remove"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let item of data">
-    <div class="ion-text-center">
-      <img [src]="item.encode" />
+
+  <ng-container *ngIf="doslide; else elseTemplate">
+    <ion-slides pager="true">
+      <ion-slide *ngFor="let post of data" style="height: auto;">
+        <img style="object-fit: cover; height: 300px;" [src]="post.encode">
+      </ion-slide>
+    </ion-slides>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <div *ngFor="let post of data">
+      <div class="ion-text-center">
+        <img [src]="post.encode">
+      </div>
     </div>
-  </div>
+  </ng-template>
 
   <div *ngIf="post" class="ion-padding">
     <ion-row>
       <ion-col size="12">
-        <!-- <ion-icon name="thumbs-up" (click)="thumbsup()" [ngStyle]="{'color': liked ? 'blue' : 'grey'}" style="color:blue; font-size: 28px; margin-right: 10px"></ion-icon> -->
-        <ion-icon name="heart" (click)="thumbsup()" [ngStyle]="{'color': liked ? 'red' : 'grey'}" style="color:blue; font-size: 28px; margin-right: 10px"></ion-icon>
+        <ion-icon name="thumbs-up" (click)="thumbsup()" [ngStyle]="{'color': liked ? 'blue' : 'grey'}" style="color:blue; font-size: 28px; margin-right: 10px"></ion-icon>
+        <!-- <ion-icon name="heart" (click)="thumbsup()" [ngStyle]="{'color': liked ? 'red' : 'grey'}" style="color:blue; font-size: 28px; margin-right: 10px"></ion-icon> -->
         <!-- <ion-icon [name]="liked ? 'heart' : 'heart-empty'" (click)="thumbsup()" [ngStyle]="{'color': liked ? 'red' : 'grey'}" style="color:blue; font-size: 28px; margin-right: 10px"></ion-icon> -->
         <ion-icon style="color:grey; font-size: 28px; margin-right: 10px" name="chatbubbles"></ion-icon>
       </ion-col>
@@ -52,6 +57,7 @@
         <form action="" (submit)="addComment()">
           <ion-input [(ngModel)]="newcomment" name="newcomment" type="text" placeholder="Add a comment..."></ion-input>
         </form>
+        <small> {{ post.tanggal }}</small>
       </ion-col>
     </ion-row>
   </div>

@@ -22,9 +22,9 @@
   </ng-container>
   <ng-template #elseTemplate>
     <ion-row>
-      <ion-col *ngFor="let image of encode" style="padding: 0; margin: 0" size="4" size-md>
+      <ion-col *ngFor="let image of encode" style="padding: 0; margin: 0; border: 1px solid white" size="4" size-md>
         <div (click)="detailPost(image.idposting)" class="ion-text-center">
-          <img [src]="image.encode" width="120px" height="120px" />
+          <img [src]="image.encode" style="width: 120px; height: 120px; object-fit: cover;" />
         </div>
       </ion-col>
     </ion-row>

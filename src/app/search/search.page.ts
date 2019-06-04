@@ -16,9 +16,11 @@ export class SearchPage {
   constructor(private service: DataService, private router: Router) { }
 
   async find(e: any) {
-    const response = await axios.get(`${SERVER_API}/user/search.php?username=${e.target.value}&as=${getAuth()}`)
-    const { result } = response.data
-    this.result = result
+    if(e.target.value.length > 0){
+      const response = await axios.get(`${SERVER_API}/user/search.php?username=${e.target.value}&as=${getAuth()}`)
+      const { result } = response.data
+      this.result = result
+    }
   }
 
   goToProfileOf(username: string) {

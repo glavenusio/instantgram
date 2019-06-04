@@ -8,11 +8,11 @@ export class DataService {
 
   constructor() { }
 
-  setData(id, data){
+  setData(id: any, data: any) {
     this.data[id] = data;
   }
-  
-  getData(id){
+
+  getData(id: any) {
     return this.data[id];
   }
 }
