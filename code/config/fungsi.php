@@ -14,3 +14,14 @@ function json($data){
     header('Content-Type: application/json');
     echo json_encode($data);
 }
+
+function findIndex($values, $toFind, $columnID){
+    foreach($values as $key => $value) {
+        if ($value[$columnID] == $toFind) {
+            $foundKey = $key;
+            return $foundKey;
+        }
+    }
+
+    return -1;
+}
