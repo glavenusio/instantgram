@@ -14,7 +14,7 @@ import { DataService } from '../service/data.service';
 export class ProfilePage implements OnInit {
 
   username: string;
-  profile: object;
+  profile: any;
   gallery: Array<any>;
   encode: Array<object>;
   loading: boolean;
@@ -59,15 +59,17 @@ export class ProfilePage implements OnInit {
   }
 
   async detailPost(selectedId: any) {
-    const response = await axios.get(`${SERVER_API}/post/show.php?username=${getAuth()}&idposting=${selectedId}`)
-    const { idposting } = response.data.post_info;
+    const passData = {
+      id: selectedId,
+      username: this.profile.username,
+    }
 
     this.dataService.setData(
-      idposting, // key
-      response.data.post_info // (data) set only id
+      selectedId, // key
+      passData // data
     );
 
-    this.router.navigateByUrl(`/tabs/post/${idposting}`);
+    this.router.navigateByUrl(`/tabs/post/${selectedId}`);
   }
 
 }

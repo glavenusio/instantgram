@@ -30,11 +30,11 @@ export class PostPage implements OnInit {
   async ngOnInit() {
     if (this.actvRoute.snapshot.data['data']) {
       const data = this.actvRoute.snapshot.data['data'];
-      const response = await axios.get(`${SERVER_API}/post/show.php?username=${data.username}&idposting=${data.idposting}`)
+
+      const response = await axios.get(`${SERVER_API}/post/show.php?username=${data.username}&idposting=${data.id}&on=${getAuth()}`)
       const { likes, liked, img_previews, post_info, comments } = response.data
 
       this.data = convertCollectionToBase64PNG(img_previews);
-
       this.setLike(likes, liked);
 
       this.post = post_info;
