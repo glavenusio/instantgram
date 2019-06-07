@@ -4,7 +4,7 @@
     <ng-template #elseBlock>
       <ion-title>loading</ion-title>
     </ng-template>
-    <ion-buttons slot="end">
+    <ion-buttons *ngIf="!hideoption" slot="end">
       <ion-button (click)="showProfileOption()" color="dark">
         <ion-icon slot="icon-only" name="more"></ion-icon>
       </ion-button>

@@ -73,13 +73,13 @@ export class PostPage implements OnInit {
     }
   }
 
-  private setLike(likes: number, liked: boolean) {
+  setLike(likes: number, liked: boolean) {
     this.liked = liked;
     this._likes = likes;
     this.likes = this._likes > 1 ? `${this._likes} likes` : `${this._likes} like`;
   }
 
-  private backToProfile() {
+  backToProfile() {
     this.location.back();
   }
 }

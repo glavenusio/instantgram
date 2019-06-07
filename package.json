@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "cordova": "rm -rf mobile && cordova create mobile && cd mobile && rm -rf www && ln -s ../www www && ionic build --prod && cordova platform add browser && cordova run browser"
   },
   "private": true,
   "dependencies": {

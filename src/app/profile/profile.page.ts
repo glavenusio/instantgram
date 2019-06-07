@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController, NavController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
 import axios from 'axios';
 import { SERVER_API, getAuth, convertToBase64PNG } from '../utils';
 import { ProfileOptionComponent } from '../popover/profile-option/profile-option.component';
@@ -18,6 +18,7 @@ export class ProfilePage implements OnInit {
   gallery: Array<any>;
   encode: Array<object>;
   loading: boolean;
+  hideoption: boolean;
 
   nopost: boolean = false;
 
@@ -42,6 +43,8 @@ export class ProfilePage implements OnInit {
     this.profile = profile;
     this.gallery = gallery;
     this.encode = convertToBase64PNG(encode, gallery);
+
+    this.hideoption = this.username != getAuth() ? true : false;
 
     if (this.encode.length <= 0) this.nopost = true;
 

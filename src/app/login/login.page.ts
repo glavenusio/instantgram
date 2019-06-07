@@ -12,7 +12,7 @@ import axios from 'axios'
 
 export class LoginPage {
   info: string;
-  private user = {
+  user = {
     username: '',
     password: ''
   };
@@ -36,6 +36,7 @@ export class LoginPage {
           router.navigateByUrl('/tabs/profile');
         } else {
           this.info = 'error: autentikasi gagal'
+          this.user.password = '';
         }
       } catch (e) {
         console.error(e);
