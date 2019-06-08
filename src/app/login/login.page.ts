@@ -1,8 +1,9 @@
-import { Router } from '@angular/router'
 import { Component } from '@angular/core';
-import { SERVER_API, setLocalAuth } from '../utils';
+import { SERVER_API, setLocalAuth, getAuth } from '../utils';
 
 import axios from 'axios'
+import { Events } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +18,10 @@ export class LoginPage {
     password: ''
   };
 
-  constructor(private router: Router) { }
+  constructor(public router: Router, public events: Events) { }
 
   async login() {
-    let { user, router } = this;
+    let { user } = this;
 
     if (user.username.length >= 1 && user.password.length >= 1) {
       let data = new FormData();
@@ -34,10 +35,8 @@ export class LoginPage {
         if (status != 401) {
           this.info = '';
           setLocalAuth(credential.username);
-          
-          router.navigateByUrl('/tabs/profile', { skipLocationChange: false }).then(() =>
-            router.navigate(['/tabs/profile']));
-            
+          this.events.publish('user:login', getAuth(), Date.now())
+          this.router.navigateByUrl('/tabs/profile');
         } else {
           this.info = 'error: autentikasi gagal'
           this.user.password = '';

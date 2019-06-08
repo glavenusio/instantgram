@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { SERVER_API, getAuth, convertCollectionToBase64PNG } from '../utils';
@@ -11,7 +11,7 @@ import * as moment from 'moment'
   styleUrls: ['./post.page.scss'],
 })
 
-export class PostPage implements OnInit {
+export class PostPage implements OnInit, OnDestroy {
 
   data: any;
   post: any;
@@ -23,7 +23,7 @@ export class PostPage implements OnInit {
   newcomment: string;
   doslide: boolean;
   slideOpts: object;
-
+  
   constructor(private actvRoute: ActivatedRoute, private location: Location) {
     this.slideOpts = {
       zoom: false,
@@ -33,21 +33,33 @@ export class PostPage implements OnInit {
   async ngOnInit() {
     if (this.actvRoute.snapshot.data['data']) {
       const data = this.actvRoute.snapshot.data['data'];
+      this.detailPost(data.username, data.id);
+      localStorage.setItem('tmp_postby', data.username);
+    } else {
+      this.detailPost(localStorage.getItem('tmp_postby'), this.actvRoute.snapshot.params.id)
+    }
+  }
 
-      const response = await axios.get(`${SERVER_API}/post/show.php?username=${data.username}&idposting=${data.id}&on=${getAuth()}`)
+  ngOnDestroy(): void {
+    localStorage.removeItem('tmp_postby');
+  }
+
+  async detailPost(by: string, postid: any){
+    try{
+      const response = await axios.get(`${SERVER_API}/post/show.php?username=${by}&idposting=${postid}&on=${getAuth()}`)
       const { likes, liked, img_previews, post_info, comments } = response.data
-
+  
       this.data = convertCollectionToBase64PNG(img_previews);
       this.setLike(likes, liked);
-
+  
       this.post = post_info;
       this.post.tanggal = moment(this.post.tanggal, "YYYYMMDD").fromNow();
-
+  
       this.comments = comments;
       this.doslide = this.data.length > 1 ? true : false;
-
-    } else {
-      this.backToProfile();
+    }
+    catch(e){
+      this.backToPrevious()
     }
   }
 
@@ -85,7 +97,7 @@ export class PostPage implements OnInit {
     if (e.tapCount == 2) await this.thumbsup();
   }
 
-  backToProfile() {
+  backToPrevious() {
     this.location.back();
   }
 }
