@@ -26,6 +26,9 @@ const routes: Routes = [
       },
       {
         path: 'profile',
+        resolve: {
+          data: DataServiceResolver
+        },
         loadChildren: '../profile/profile.module#ProfilePageModule'
       },
       {

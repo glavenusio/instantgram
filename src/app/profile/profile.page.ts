@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import axios from 'axios';
 import { SERVER_API, getAuth, convertToBase64PNG } from '../utils';
@@ -13,7 +13,7 @@ import { DataService } from '../service/data.service';
 })
 export class ProfilePage implements OnInit {
 
-  username: string;
+  username: string = getAuth();
   profile: any;
   gallery: Array<any>;
   encode: Array<object>;
@@ -32,10 +32,10 @@ export class ProfilePage implements OnInit {
       this.username = this.actvRoute.snapshot.data['data'];
     else
       this.username = getAuth();
-
+    
     this.profileDetail();
   }
-
+  
   private async profileDetail() {
     const response = await axios.get(`${SERVER_API}/user/profile.php?username=${this.username}`);
     const { profile, gallery, encode } = response.data;

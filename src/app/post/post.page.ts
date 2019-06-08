@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { SERVER_API, getAuth, convertCollectionToBase64PNG } from '../utils';
 import { Location } from '@angular/common'
@@ -17,6 +17,7 @@ export class PostPage implements OnInit {
   data: any;
   post: any;
   likes: string;
+  count: number = 0;
   _likes: number = 1;
   liked: boolean = false;
   comments: any;
@@ -55,7 +56,6 @@ export class PostPage implements OnInit {
 
     const response = await axios.post(`${SERVER_API}/like/thumbs.php`, data)
     this.setLike(response.data.likes, response.data.liked)
-
   }
 
   async addComment() {
@@ -77,6 +77,10 @@ export class PostPage implements OnInit {
     this.liked = liked;
     this._likes = likes;
     this.likes = this._likes > 1 ? `${this._likes} likes` : `${this._likes} like`;
+  }
+
+  async myFunction(e: any) {
+    if(e.tapCount == 2) await this.thumbsup();
   }
 
   backToProfile() {

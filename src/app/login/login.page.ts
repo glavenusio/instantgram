@@ -32,8 +32,12 @@ export class LoginPage {
         const { status, credential } = response.data;
 
         if (status != 401) {
-          setLocalAuth(credential.username)
-          router.navigateByUrl('/tabs/profile');
+          this.info = '';
+          setLocalAuth(credential.username);
+          
+          router.navigateByUrl('/tabs/profile', { skipLocationChange: false }).then(() =>
+            router.navigate(['/tabs/profile']));
+            
         } else {
           this.info = 'error: autentikasi gagal'
           this.user.password = '';

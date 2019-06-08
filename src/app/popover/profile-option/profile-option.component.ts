@@ -12,11 +12,13 @@ export class ProfileOptionComponent implements OnInit {
 
   constructor(private router: Router, public popoverController: PopoverController) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  logout(){
+  logout() {
     destroyAuth();
     this.popoverController.dismiss();
-    location.href = '/login';
+
+    this.router.navigateByUrl('/tabs/profile', { skipLocationChange: true }).then(() =>
+      this.router.navigate(['/login']));
   }
 }
