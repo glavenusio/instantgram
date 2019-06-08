@@ -19,7 +19,6 @@ export class ProfilePage implements OnInit {
   encode: Array<object>;
   loading: boolean;
   hideoption: boolean;
-
   nopost: boolean = false;
 
   constructor(public popoverController: PopoverController,
@@ -73,11 +72,11 @@ export class ProfilePage implements OnInit {
       id: selectedId,
       username: this.profile.username,
     }
-    
+
     this.dataService.setData(
       selectedId, // key
       passData // data
-      );
+    );
 
     this.router.navigateByUrl(`/tabs/post/${selectedId}`);
   }
