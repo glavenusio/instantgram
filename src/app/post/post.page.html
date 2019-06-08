@@ -12,15 +12,17 @@
 <ion-content>
   <!-- image post -->
   <ng-container *ngIf="doslide; else elseTemplate">
-    <ion-slides pager="true">
+    <ion-slides pager="true" [options]="slideOpts">
       <ion-slide *ngFor="let post of data" style="height: auto;">
-        <img style="object-fit: cover; height: 300px;" [src]="post.encode">
+        <div (tap)="doubleTapLike($event)">
+          <img style="object-fit: cover; height: 300px;" [src]="post.encode">
+        </div>
       </ion-slide>
     </ion-slides>
   </ng-container>
   <ng-template #elseTemplate>
     <div *ngFor="let post of data">
-      <div (tap)="myFunction($event)" class="ion-text-center">
+      <div (tap)="doubleTapLike($event)" class="ion-text-center">
         <img [src]="post.encode">
       </div>
     </div>

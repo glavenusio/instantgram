@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { SERVER_API, getAuth, convertCollectionToBase64PNG } from '../utils';
 import { Location } from '@angular/common'
-import { IonSlides } from '@ionic/angular';
 import * as moment from 'moment'
 
 @Component({
@@ -24,9 +23,12 @@ export class PostPage implements OnInit {
   newcomment: string;
   doslide: boolean;
   slideOpts: object;
-  @ViewChild(IonSlides) slides: IonSlides;
 
-  constructor(private actvRoute: ActivatedRoute, private location: Location) { }
+  constructor(private actvRoute: ActivatedRoute, private location: Location) {
+    this.slideOpts = {
+      zoom: false,
+    }
+  }
 
   async ngOnInit() {
     if (this.actvRoute.snapshot.data['data']) {
@@ -79,8 +81,8 @@ export class PostPage implements OnInit {
     this.likes = this._likes > 1 ? `${this._likes} likes` : `${this._likes} like`;
   }
 
-  async myFunction(e: any) {
-    if(e.tapCount == 2) await this.thumbsup();
+  async doubleTapLike(e: any) {
+    if (e.tapCount == 2) await this.thumbsup();
   }
 
   backToProfile() {
