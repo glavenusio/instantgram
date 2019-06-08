@@ -9,19 +9,19 @@ function dp($data){
 
 function json($data){
     header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Max-Age: 1000');
-    header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
     header('Content-Type: application/json');
+    header('Access-Control-Mx-Age: 200');
+    header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
     echo json_encode($data);
 }
 
-function findIndex($values, $toFind, $columnID){
-    foreach($values as $key => $value) {
-        if ($value[$columnID] == $toFind) {
+// find index array of object
+function findIndex($array, $toFind, $objectKey){
+    foreach($array as $key => $value) {
+        if ($value[$objectKey] == $toFind) {
             $foundKey = $key;
             return $foundKey;
         }
     }
-
     return -1;
 }

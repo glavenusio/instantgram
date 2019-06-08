@@ -3,6 +3,7 @@
 
     $username = $_GET['username'];
     $idposting = $_GET['idposting'];
+    $on = $_GET['on'];
 
     $query = mysqli_query($koneksi, "SELECT * 
         FROM user u
@@ -31,7 +32,7 @@
     $query = mysqli_query($koneksi, "SELECT * FROM jempol_like WHERE idposting = $idposting");
     $likes = mysqli_num_rows($query);
     
-    $query = mysqli_query($koneksi, "SELECT * FROM jempol_like WHERE idposting = $idposting AND username = '$username'");
+    $query = mysqli_query($koneksi, "SELECT * FROM jempol_like WHERE idposting = $idposting AND username = '$on'");
     $result = mysqli_num_rows($query);
     $liked = $result == 1 ? true : false;
 
