@@ -17,7 +17,6 @@ export class ProfilePage implements OnInit {
   profile: any;
   gallery: Array<any>;
   encode: Array<object>;
-  loading: boolean;
   hideoption: boolean;
   nopost: boolean = false;
 
@@ -53,8 +52,6 @@ export class ProfilePage implements OnInit {
     this.hideoption = this.username != getAuth() ? true : false;
 
     if (this.encode.length <= 0) this.nopost = true;
-
-    this.loading = false;
   }
 
   async showProfileOption(ev: any) {
