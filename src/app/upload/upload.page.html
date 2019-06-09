@@ -1,27 +1,31 @@
 <ion-header>
   <ion-toolbar mode="ios">
     <ion-title>New Post</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button [disabled]="!mediapreview" color="dark">
+        publish
+        <!-- <ion-icon slot="icon-only" name="more"></ion-icon> -->
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-text-center">
-  <p style="color: grey">choose media source</p>
+  <p style="color: grey; margin-bottom: 5px">snap a moment</p>
   <ion-grid>
     <ion-row>
-      <ion-col size="6">
+      <ion-col size="12">
         <ion-button (click)="openCamera()" color="medium">
           <ion-icon slot="icon-only" name="camera"></ion-icon>
-        </ion-button>
-      </ion-col>
-
-      <ion-col size="6">
-        <ion-button (click)="openGallery()" color="medium">
-          <ion-icon slot="icon-only" name="image"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <!-- <img *ngIf="mediapreview" [src]="mediapreview" alt="preview"> -->
-  {{ mediapreview }}
+  <img *ngIf="mediapreview" height="320" style="object-fit: cover" [src]="mediapreview" alt="preview">
+  <!-- {{ erinfo }} -->
+  <ion-item *ngIf="mediapreview">
+    <ion-input style="font-size: 15px" [(ngModel)]="caption" name="caption" type="text" placeholder="write your caption"></ion-input>
+  </ion-item>
 </ion-content>

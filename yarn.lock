@@ -299,6 +299,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/image-picker@^5.7.0":
+  version "5.7.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/image-picker/-/image-picker-5.7.0.tgz#dd5b073715e1aab83949988f99e7b8ccc7a8bbcd"
+  integrity sha512-36bWZnCNmv1spMK9W/bwwLwSlwVAx8fCQITp/k94C4H7csWG7fcDizvdP0KqBF7xx1o3FhCBaQ1LEOjCC7Osmg==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/screen-orientation@^5.7.0":
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/@ionic-native/screen-orientation/-/screen-orientation-5.7.0.tgz#35f29a894d3d7c19694e18dfb31e00b6792f870e"
@@ -1862,6 +1869,11 @@ cordova-plugin-device@^2.0.2:
   resolved "https://registry.yarnpkg.com/cordova-plugin-device/-/cordova-plugin-device-2.0.2.tgz#fc08f3722e67eef7b6c67bfc99a83df6add0baba"
   integrity sha1-/Ajzci5n7ve2xnv8mag99q3Quro=
 
+cordova-plugin-imagepicker@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-imagepicker/-/cordova-plugin-imagepicker-1.3.0.tgz#a5ec42d248e8435973975e0e7b92e2d7c35cfe11"
+  integrity sha1-pexC0kjoQ1lzl14Oe5Li18Nc/hE=
+
 cordova-plugin-ionic-keyboard@^2.1.3:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/cordova-plugin-ionic-keyboard/-/cordova-plugin-ionic-keyboard-2.1.3.tgz#6b050d5b7cb4393d5758b55f45a46372f25178fe"
@@ -1886,6 +1898,11 @@ cordova-plugin-statusbar@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/cordova-plugin-statusbar/-/cordova-plugin-statusbar-2.4.2.tgz#fc1fbdc0d8d7033a7e8e1f1f7ff167ac9bd4faf6"
   integrity sha1-/B+9wNjXAzp+jh8ff/FnrJvU+vY=
+
+cordova-plugin-telerik-imagepicker@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/cordova-plugin-telerik-imagepicker/-/cordova-plugin-telerik-imagepicker-2.3.2.tgz#cd95b23292893f0ca4e5a22b871a664e27a9673c"
+  integrity sha512-YF98mdjv4jtSvY/nyPj2AQpqSLb2HsulHtQFkznjGkcU9gLeNLQutc48gejsFxL7hMKctQHnIHFi1mj20awqJg==
 
 cordova-plugin-whitelist@^1.3.3:
   version "1.3.3"
@@ -6098,7 +6115,7 @@ rxjs@6.3.3:
   dependencies:
     tslib "^1.9.0"
 
-rxjs@^6.1.0, rxjs@~6.5.1:
+rxjs@^6.1.0, rxjs@^6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.2.tgz#2e35ce815cd46d84d02a209fb4e5921e051dbec7"
   integrity sha512-HUb7j3kvb7p7eCUHE3FqjoDsC1xfZQ4AHFWfTKSpZ+sAhhz5X1WX0ZuUqWbzB2QhSLp3DoLUG+hMdEDKqWo2Zg==

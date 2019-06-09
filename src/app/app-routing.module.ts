@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'tabs/profile', pathMatch: 'full' },
   { path: '', loadChildren: './tabs/tabs.module#TabsPageModule', canActivate: [AuthGuardService] },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule', canActivate: [AlreadyAuthenticated] },
-  { path: 'upload', loadChildren: './upload/upload.module#UploadPageModule' },
+  // { path: 'upsource', loadChildren: './upsource/upsource.module#UpsourcePageModule' },
 ];
 
 @NgModule({
