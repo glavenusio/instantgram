@@ -1,11 +1,10 @@
 <ion-header>
   <ion-toolbar mode="ios">
-    <ion-title>Fresh</ion-title>
+    <ion-title>New Post</ion-title>
 
     <ion-buttons slot="end">
-      <ion-button [disabled]="!mediapreview" color="dark">
+      <ion-button (click)="publish()" [disabled]="collection.length < 1" color="dark">
         publish
-        <!-- <ion-icon slot="icon-only" name="more"></ion-icon> -->
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -23,9 +22,10 @@
     </ion-row>
   </ion-grid>
 
-  <div *ngFor="let post of collection;">
+  <!-- TODO: make slide if collection more than 1 -->
+  <div *ngFor="let post of collection">
     <div class="ion-text-center">
-      <img [src]="post" height="320" style="object-fit: cover" [src]="mediapreview" alt="preview">
+      <img [src]="post" style="object-fit: cover" alt="preview">
     </div>
   </div>
 

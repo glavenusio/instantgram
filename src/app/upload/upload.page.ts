@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { getAuth, SERVER_API } from '../utils';
+import axios from 'axios';
+import { Router } from '@angular/router';
+import { Events } from '@ionic/angular';
 
 @Component({
   selector: 'app-upload',
@@ -9,44 +12,48 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 })
 export class UploadPage implements OnInit {
 
-  mediapreview: any;
   lensoptions: CameraOptions;
   erinfo: string;
   caption: string;
-  collection: Array<any>;
+  collection: Array<string>;
 
-  constructor(private camera: Camera, private imagePicker: ImagePicker) {
+  constructor(private camera: Camera, private router: Router, private events: Events) {
     this.lensoptions = {
-      quality: 20,
+      quality: 10,
       destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.PNG,
+      encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
+      // sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       correctOrientation: true,
     }
-
-    this.collection = new Array();
   }
 
   ngOnInit() {
+    this.collection = new Array();
   }
 
   async openCamera() {
     this.camera.getPicture(this.lensoptions).then(async (imageData) => {
       this.collection.push(`data:image/png;base64,${imageData}`);
-    }, (err) => {
-      // Handle error
-    });
-
+    }, (err) => { });
   }
 
-  openGallery() {
-    this.imagePicker.getPictures(this.lensoptions).then((results) => {
-      for (var i = 0; i < results.length; i++) {
-        console.log('Image URI: ' + results[i]);
-      }
-    }, (err) => {
-      this.erinfo = JSON.stringify(err);
-    });
+  async publish() {
+    let data = new FormData();
+    for (const item of this.collection) {
+      data.append(`images[]`, item);
+    }
 
+    data.append('username', getAuth());
+    data.append('caption', this.caption);
+
+    try {
+      await axios.post(`${SERVER_API}/post/store.php`, data)
+      this.router.navigateByUrl('/tabs/profile')
+      this.events.publish('user:login', getAuth(), Date.now())
+      this.collection = new Array();
+    } catch (e) {
+      this.erinfo = JSON.stringify(e)
+    }
   }
 }

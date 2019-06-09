@@ -31,7 +31,7 @@ export class LoginPage {
       try {
         const response = await axios.post(`${SERVER_API}/user/login.php`, data);
         const { status, credential } = response.data;
-
+        
         if (status != 401) {
           this.info = '';
           setLocalAuth(credential.username);

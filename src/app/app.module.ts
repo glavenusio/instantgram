@@ -10,17 +10,18 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProfileOptionComponent } from './popover/profile-option/profile-option.component';
 import { Camera } from '@ionic-native/camera/ngx';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
+// import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import {HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [AppComponent, ProfileOptionComponent],
   entryComponents: [ProfileOptionComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,
     Camera,
-    ImagePicker,
+    // ImagePicker,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

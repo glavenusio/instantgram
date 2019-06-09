@@ -23,7 +23,7 @@
   <ng-template #elseTemplate>
     <div *ngFor="let post of data">
       <div (tap)="doubleTapLike($event)" class="ion-text-center">
-        <img [src]="post.encode">
+        <img style="object-fit: cover; height: 300px;" [src]="post.encode">
       </div>
     </div>
   </ng-template>
