@@ -38,6 +38,10 @@ const routes: Routes = [
         },
         loadChildren: '../profile/profile.module#ProfilePageModule'
       },
+      {
+        path: 'new',
+        loadChildren: '../upload/upload.module#UploadPageModule'
+      }
     ]
   },
   {
