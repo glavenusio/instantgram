@@ -15,7 +15,7 @@
         array_push($validBase64, $data);
     }
     
-    mysqli_query($koneksi, "INSERT INTO posting (username, komen) VALUES ('$username',$komen)");
+    mysqli_query($koneksi, "INSERT INTO posting (username, komen) VALUES ('$username','$komen')");
     $postid = mysqli_insert_id($koneksi);
     
     foreach ($validBase64 as $key => $value) {
@@ -29,5 +29,4 @@
     json([
         'info' => 'upload success',
         'status' => 200,
-        'image' => $validBase64
     ]);
