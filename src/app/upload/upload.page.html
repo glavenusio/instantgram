@@ -23,11 +23,13 @@
     </ion-row>
   </ion-grid>
 
-  <!-- <img *ngIf="mediapreview" height="320" style="object-fit: cover" [src]="mediapreview" alt="preview"> -->
-  {{ mediapreview }}
+  <div *ngFor="let post of collection;">
+    <div class="ion-text-center">
+      <img [src]="post" height="320" style="object-fit: cover" [src]="mediapreview" alt="preview">
+    </div>
+  </div>
 
-  <!-- <ion-item *ngIf="mediapreview">
+  <ion-item *ngIf="collection.length > 0">
     <ion-input style="font-size: 15px" [(ngModel)]="caption" name="caption" type="text" placeholder="write your caption"></ion-input>
-  </ion-item> -->
-  <!-- </ng-template> -->
+  </ion-item>
 </ion-content>

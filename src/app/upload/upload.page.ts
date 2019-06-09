@@ -13,6 +13,7 @@ export class UploadPage implements OnInit {
   lensoptions: CameraOptions;
   erinfo: string;
   caption: string;
+  collection: Array<any>;
 
   constructor(private camera: Camera, private imagePicker: ImagePicker) {
     this.lensoptions = {
@@ -22,6 +23,8 @@ export class UploadPage implements OnInit {
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true,
     }
+
+    this.collection = new Array();
   }
 
   ngOnInit() {
@@ -29,7 +32,7 @@ export class UploadPage implements OnInit {
 
   async openCamera() {
     this.camera.getPicture(this.lensoptions).then(async (imageData) => {
-      this.mediapreview = `data:image/png;base64,${imageData}`;
+      this.collection.push(`data:image/png;base64,${imageData}`);
     }, (err) => {
       // Handle error
     });
