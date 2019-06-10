@@ -20,7 +20,7 @@
         $file = 'upload/'.$name;
 
         array_push($img_previews, $URI.'/post/upload/'.$name);
-        // array_push($img_previews, base64_encode(file_get_contents($file)));
+        // array_push($img_previews, base64_encode( file_get_contents($file) ) );
     }
 
     $query = mysqli_query($koneksi, "SELECT * FROM posting WHERE idposting = $idposting");
