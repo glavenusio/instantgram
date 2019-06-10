@@ -38,11 +38,9 @@ export class PostPage implements OnInit, OnDestroy {
 
   async ngOnInit() {
     if (this.actvRoute.snapshot.data['data']) {
-      
       const data = this.actvRoute.snapshot.data['data'];
       this.detailPost(data.username, data.id);
       localStorage.setItem('tmp_postby', data.username);
-
     } else {
       this.detailPost(localStorage.getItem('tmp_postby'), this.actvRoute.snapshot.params.id)
     }
@@ -62,9 +60,7 @@ export class PostPage implements OnInit, OnDestroy {
           text: 'Cancel',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: (blah) => {
-            // console.log('Confirm Cancel: blah');
-          }
+          handler: (blah) => { }
         }, {
           text: 'Okay',
           cssClass: 'danger',
@@ -92,6 +88,7 @@ export class PostPage implements OnInit, OnDestroy {
       this.post.tanggal = moment(this.post.tanggal, "YYYYMMDD").fromNow();
 
       this.allowed = this.post.username != getAuth() ? false : true;
+      this.maxpotrait = localStorage.getItem('maxpotrait') === 'true';
 
       this.comments = comments;
       this.doslide = this.data.length > 1 ? true : false;
