@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PopoverController, Events } from '@ionic/angular';
 import axios from 'axios';
-import { SERVER_API, getAuth, convertToBase64PNG } from '../utils';
+import { SERVER_API, getAuth, convertToFinalCollection } from '../utils';
 import { ProfileOptionComponent } from '../popover/profile-option/profile-option.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../service/data.service';
@@ -15,8 +15,8 @@ export class ProfilePage implements OnInit {
 
   username: string;
   profile: any;
-  gallery: Array<any>;
   encode: Array<object>;
+  gallery: Array<object>;
   hideoption: boolean;
   nopost: boolean = false;
 
@@ -43,11 +43,11 @@ export class ProfilePage implements OnInit {
 
   private async profileDetail() {
     const response = await axios.get(`${SERVER_API}/user/profile.php?username=${this.username}`);
-    const { profile, gallery, encode } = response.data;
-
+    const { profile, uris, gallery } = response.data;
+    
     this.profile = profile;
     this.gallery = gallery;
-    this.encode = convertToBase64PNG(encode, gallery);
+    this.encode = convertToFinalCollection(uris, gallery);
 
     this.hideoption = this.username != getAuth() ? true : false;
 

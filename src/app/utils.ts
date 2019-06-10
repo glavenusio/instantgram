@@ -19,31 +19,24 @@ export const destroyAuth = () => {
     localStorage.removeItem(AUTH_LOCAL_KEY)
 }
 
-export const convertCollectionToBase64PNG = (encoded: Array<object>) => {
+export const convertToFinalCollection = (raws: Array<object>, gallery?: Array<any>) => {
     let result = new Array();
 
-    encoded.map((enc: object) => {
-        let base64 = "data:image/png;base64,";
-        let final = base64 + enc;
-        result.push({
-            encode: final
-        });
-    })
+    if (!gallery) {
+        raws.map((src: object) => {
+            result.push({
+                src: src
+            });
+        })
+    } else {
+        raws.map((src: object, index: number) => {
+            result.push({
+                idposting: gallery[index].idposting,
+                src: src
+            });
+        })
 
-    return result;
-}
-
-export const convertToBase64PNG = (raws: Array<object>, gallery: Array<any>) => {
-    let result = new Array();
-
-    raws.map((enc: object, index: number) => {
-        let base64 = "data:image/png;base64,";
-        let final = base64 + enc;
-        result.push({
-            idposting: gallery[index].idposting,
-            encode: final
-        });
-    })
+    }
 
     return result;
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
-import { SERVER_API, getAuth, convertCollectionToBase64PNG } from '../utils';
+import { SERVER_API, getAuth, convertToFinalCollection } from '../utils';
 import { Location } from '@angular/common'
 import * as moment from 'moment'
 
@@ -49,7 +49,7 @@ export class PostPage implements OnInit, OnDestroy {
       const response = await axios.get(`${SERVER_API}/post/show.php?username=${by}&idposting=${postid}&on=${getAuth()}`)
       const { likes, liked, img_previews, post_info, comments } = response.data
   
-      this.data = convertCollectionToBase64PNG(img_previews);
+      this.data = convertToFinalCollection(img_previews);
       this.setLike(likes, liked);
   
       this.post = post_info;
@@ -95,6 +95,7 @@ export class PostPage implements OnInit, OnDestroy {
 
   async doubleTapLike(e: any) {
     if (e.tapCount == 2) await this.thumbsup();
+    else return;
   }
 
   backToPrevious() {

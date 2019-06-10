@@ -16,6 +16,7 @@ export class UploadPage implements OnInit {
   erinfo: string;
   caption: string;
   collection: Array<string>;
+  slideOpts: object;
 
   constructor(private camera: Camera, private router: Router, private events: Events) {
     this.lensoptions = {
@@ -23,8 +24,11 @@ export class UploadPage implements OnInit {
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      // sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       correctOrientation: true,
+    }
+    
+    this.slideOpts = {
+      zoom: false,
     }
   }
 
@@ -32,10 +36,30 @@ export class UploadPage implements OnInit {
     this.collection = new Array();
   }
 
-  async openCamera() {
+  openCamera() {
     this.camera.getPicture(this.lensoptions).then(async (imageData) => {
       this.collection.push(`data:image/png;base64,${imageData}`);
     }, (err) => { });
+  }
+
+  openGallery(){
+    let galleryOpt: CameraOptions = {
+      quality: 10,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      correctOrientation: true,
+    }
+
+    this.camera.getPicture(galleryOpt).then(async (imageData) => {
+      this.collection.push(`data:image/png;base64,${imageData}`);
+    }, (err) => { });
+  }
+
+  cancel(){
+    this.collection = new Array();
+    this.caption = ''; 
   }
 
   async publish() {

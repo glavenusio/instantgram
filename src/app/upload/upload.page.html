@@ -1,7 +1,11 @@
 <ion-header>
   <ion-toolbar mode="ios">
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()" color="dark">
+        cancel
+      </ion-button>
+    </ion-buttons>
     <ion-title>New Post</ion-title>
-
     <ion-buttons slot="end">
       <ion-button (click)="publish()" [disabled]="collection.length < 1" color="dark">
         publish
@@ -11,23 +15,39 @@
 </ion-header>
 
 <ion-content class="ion-text-center">
-  <p style="color: grey; margin-bottom: 5px">snap a moment</p>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <ion-button (click)="openCamera()" color="medium">
-          <ion-icon slot="icon-only" name="camera"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <!-- TODO: make slide if collection more than 1 -->
-  <div *ngFor="let post of collection">
-    <div class="ion-text-center">
-      <img [src]="post" style="object-fit: cover" alt="preview">
-    </div>
+  <p style="color: grey; margin-bottom: 5px">choose media source</p>
+  <div style="padding: 0 70px">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button size="large" (click)="openCamera()" color="medium">
+            <ion-icon slot="icon-only" name="camera"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button size="large" (click)="openGallery()" color="medium">
+            <ion-icon slot="icon-only" name="images"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
+  <!-- TODO: make slide if collection more than 1 -->
+  <ng-container *ngIf="collection.length > 1; else woslide">
+    <ion-slides pager="true" [options]="slideOpts">
+      <ion-slide *ngFor="let post of collection" style="height: auto;">
+        <img [src]="post" style="object-fit: cover; max-height: 600px;" alt="preview">
+      </ion-slide>
+    </ion-slides>
+  </ng-container>
+
+  <ng-template #woslide>
+    <div *ngFor="let post of collection">
+      <div class="ion-text-center">
+        <img [src]="post" style="object-fit: cover; max-height: 600px" alt="preview">
+      </div>
+    </div>
+  </ng-template>
 
   <ion-item *ngIf="collection.length > 0">
     <ion-input style="font-size: 15px" [(ngModel)]="caption" name="caption" type="text" placeholder="write your caption"></ion-input>

@@ -6,6 +6,12 @@
       </ion-button>
     </ion-buttons>
     <ion-title>Post</ion-title>
+    <!-- cooming soon -->
+    <!-- <ion-buttons slot="end">
+      <ion-button color="dark">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +21,7 @@
     <ion-slides pager="true" [options]="slideOpts">
       <ion-slide *ngFor="let post of data" style="height: auto;">
         <div (tap)="doubleTapLike($event)">
-          <img style="object-fit: cover; height: 300px;" [src]="post.encode">
+          <img [src]="post.src" class="post-preview">
         </div>
       </ion-slide>
     </ion-slides>
@@ -23,7 +29,7 @@
   <ng-template #elseTemplate>
     <div *ngFor="let post of data">
       <div (tap)="doubleTapLike($event)" class="ion-text-center">
-        <img style="object-fit: cover; height: 300px;" [src]="post.encode">
+        <img [src]="post.src" class="post-preview">
       </div>
     </div>
   </ng-template>
@@ -54,7 +60,7 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <form action="" (submit)="addComment()">
+        <form (submit)="addComment()">
           <ion-input [(ngModel)]="newcomment" name="newcomment" type="text" placeholder="Add a comment..."></ion-input>
         </form>
         <small> {{ post.tanggal }}</small>
