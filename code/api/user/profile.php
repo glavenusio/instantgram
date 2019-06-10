@@ -8,11 +8,14 @@
         FROM posting p
         JOIN gambar g
             on g.idposting = p.idposting
-        WHERE p.username = '$username'"
+        WHERE p.username = '$username'
+        ORDER BY g.idposting DESC
+        "
     );
 
     $gallery = [];
     $encode = [];
+    $uris = [];
 
     while ($result = mysqli_fetch_assoc($query)){
         array_push($gallery, $result);
@@ -27,12 +30,14 @@
             continue;
 
         $name = $gallery[$i]['idgambar'].'.'.$gallery[$i]['extention'];
-        $location = '../post/upload/'.$name;
+        // $location = '../post/upload/'.$name;
 
         array_push($tmpcollection, $gallery[$i]);
-        array_push($encode, base64_encode( file_get_contents( $location )));
+        // array_push($encode, base64_encode( file_get_contents( $location )));
+
+        array_push($uris, $URI.'/post/upload/'.$name);
     }
-    
+
     $gallery = $tmpcollection;
     $tmpcollection = [];
     
@@ -42,5 +47,6 @@
     json([
         'gallery' => $gallery,
         'profile' => $profile,
-        'encode' => $encode
+        // 'encode' => $encode,
+        'uris' => $uris
     ]);

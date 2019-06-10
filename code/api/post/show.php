@@ -16,8 +16,11 @@
 
     $img_previews = [];
     while($result = mysqli_fetch_assoc($query)){
-        $file = 'upload/'.$result['idgambar'].'.'.$result['extention'];
-        array_push($img_previews, base64_encode( file_get_contents($file) ) );
+        $name = $result['idgambar'].'.'.$result['extention'];
+        $file = 'upload/'.$name;
+
+        array_push($img_previews, $URI.'/post/upload/'.$name);
+        // array_push($img_previews, base64_encode(file_get_contents($file)));
     }
 
     $query = mysqli_query($koneksi, "SELECT * FROM posting WHERE idposting = $idposting");

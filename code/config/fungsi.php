@@ -2,6 +2,8 @@
 
 require_once ('koneksi.php');
 
+$URI = 'http://192.168.1.10:8080/api';
+
 function dp($data){
     print("<pre>".print_r($data,true)."</pre>");
     die();
