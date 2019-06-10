@@ -35,7 +35,7 @@ export class LoginPage {
         if (status != 401) {
           this.info = '';
           setLocalAuth(credential.username);
-          this.events.publish('user:login', getAuth(), Date.now())
+          this.events.publish('user:login', getAuth(), Date.now());
           this.router.navigateByUrl('/tabs/profile');
         } else {
           this.info = 'error: autentikasi gagal'

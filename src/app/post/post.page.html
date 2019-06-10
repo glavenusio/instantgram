@@ -6,12 +6,11 @@
       </ion-button>
     </ion-buttons>
     <ion-title>Post</ion-title>
-    <!-- cooming soon -->
-    <!-- <ion-buttons slot="end">
-      <ion-button color="dark">
-        <ion-icon slot="icon-only" name="trash"></ion-icon>
+    <ion-buttons *ngIf="allowed" slot="end">
+      <ion-button (click)="deletePost()" color="dark">
+        <ion-icon slot="icon-only" name="remove-circle-outline"></ion-icon>
       </ion-button>
-    </ion-buttons> -->
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -21,7 +20,7 @@
     <ion-slides pager="true" [options]="slideOpts">
       <ion-slide *ngFor="let post of data" style="height: auto;">
         <div (tap)="doubleTapLike($event)">
-          <img [src]="post.src" class="post-preview">
+          <img [src]="post.src" [ngClass]="{'post-preview-maxpotrait': maxpotrait, 'post-preview': !maxpotrait}">
         </div>
       </ion-slide>
     </ion-slides>
@@ -29,7 +28,7 @@
   <ng-template #elseTemplate>
     <div *ngFor="let post of data">
       <div (tap)="doubleTapLike($event)" class="ion-text-center">
-        <img [src]="post.src" class="post-preview">
+        <img [src]="post.src" [ngClass]="{'post-preview-maxpotrait': maxpotrait, 'post-preview': !maxpotrait}" />
       </div>
     </div>
   </ng-template>

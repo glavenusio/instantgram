@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import axios from 'axios';
 import { SERVER_API, getAuth, convertToFinalCollection } from '../utils';
 import { Location } from '@angular/common'
 import * as moment from 'moment'
+import { Events, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-post',
@@ -23,18 +24,25 @@ export class PostPage implements OnInit, OnDestroy {
   newcomment: string;
   doslide: boolean;
   slideOpts: object;
-  
-  constructor(private actvRoute: ActivatedRoute, private location: Location) {
+  allowed: boolean;
+  maxpotrait: boolean;
+
+  constructor(private actvRoute: ActivatedRoute,
+    private alertController: AlertController,
+    private router: Router, private location: Location, private events: Events) {
     this.slideOpts = {
       zoom: false,
     }
+    this.maxpotrait = localStorage.getItem('maxpotrait') === 'true';
   }
 
   async ngOnInit() {
     if (this.actvRoute.snapshot.data['data']) {
+      
       const data = this.actvRoute.snapshot.data['data'];
       this.detailPost(data.username, data.id);
       localStorage.setItem('tmp_postby', data.username);
+
     } else {
       this.detailPost(localStorage.getItem('tmp_postby'), this.actvRoute.snapshot.params.id)
     }
@@ -42,23 +50,53 @@ export class PostPage implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     localStorage.removeItem('tmp_postby');
+    localStorage.removeItem('maxpotrait');
   }
 
-  async detailPost(by: string, postid: any){
-    try{
+  async deletePost() {
+    const alert = await this.alertController.create({
+      header: 'Delete Post',
+      message: 'Post will delete permanently',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            // console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          cssClass: 'danger',
+          handler: async () => {
+            await axios.get(`${SERVER_API}/post/delete.php?username=${getAuth()}&idposting=${this.post.idposting}`);
+            this.router.navigateByUrl('/tabs/profile');
+            this.events.publish('user:login', getAuth(), Date.now())
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async detailPost(by: string, postid: any) {
+    try {
       const response = await axios.get(`${SERVER_API}/post/show.php?username=${by}&idposting=${postid}&on=${getAuth()}`)
       const { likes, liked, img_previews, post_info, comments } = response.data
-  
+
       this.data = convertToFinalCollection(img_previews);
       this.setLike(likes, liked);
-  
+
       this.post = post_info;
       this.post.tanggal = moment(this.post.tanggal, "YYYYMMDD").fromNow();
-  
+
+      this.allowed = this.post.username != getAuth() ? false : true;
+
       this.comments = comments;
       this.doslide = this.data.length > 1 ? true : false;
     }
-    catch(e){
+    catch (e) {
       this.backToPrevious()
     }
   }

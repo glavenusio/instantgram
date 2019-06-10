@@ -63,19 +63,27 @@ export class ProfilePage implements OnInit {
 
     return await popover.present();
   }
+  getMeta(url: any){   
+    var img = new Image();
+    img.src = url;
+    return img;
+  }
 
-  async detailPost(selectedId: any) {
+  async detailPost(selectedItem: any) {
+    // this.events.publish('post:height', this.getMeta(selectedItem.src).height);
+    localStorage.setItem('maxpotrait', this.getMeta(selectedItem.src).height > 1000 ? 'true' : 'false')
+
     const passData = {
-      id: selectedId,
+      id: selectedItem.idposting,
       username: this.profile.username,
     }
 
     this.dataService.setData(
-      selectedId, // key
+      selectedItem.idposting, // key
       passData // data
     );
 
-    this.router.navigateByUrl(`/tabs/post/${selectedId}`);
+    this.router.navigateByUrl(`/tabs/post/${selectedItem.idposting}`);
   }
 
 }

@@ -20,7 +20,7 @@ export class UploadPage implements OnInit {
 
   constructor(private camera: Camera, private router: Router, private events: Events) {
     this.lensoptions = {
-      quality: 10,
+      quality: 30,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -44,7 +44,7 @@ export class UploadPage implements OnInit {
 
   openGallery(){
     let galleryOpt: CameraOptions = {
-      quality: 10,
+      quality: 30,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,

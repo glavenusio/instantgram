@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar mode="ios">
-    <ion-buttons slot="start">
+    <ion-buttons *ngIf="collection.length > 0" slot="start">
       <ion-button (click)="cancel()" color="dark">
         cancel
       </ion-button>
@@ -32,21 +32,23 @@
       </ion-row>
     </ion-grid>
   </div>
-  <!-- TODO: make slide if collection more than 1 -->
+
   <ng-container *ngIf="collection.length > 1; else woslide">
     <ion-slides pager="true" [options]="slideOpts">
       <ion-slide *ngFor="let post of collection" style="height: auto;">
-        <img [src]="post" style="object-fit: cover; max-height: 600px;" alt="preview">
+        <img [src]="post" style="object-fit: cover; width: 500px; height: 500px;" alt="preview">
       </ion-slide>
     </ion-slides>
   </ng-container>
 
   <ng-template #woslide>
-    <div *ngFor="let post of collection">
-      <div class="ion-text-center">
-        <img [src]="post" style="object-fit: cover; max-height: 600px" alt="preview">
-      </div>
-    </div>
+    <ion-row>
+      <ion-col *ngFor="let post of collection" style="padding: 0; margin: 0;" size="12" size-md>
+        <div class="ion-text-center">
+          <img [src]="post" style="width: 500px; height: 500px; object-fit: cover;" alt="preview">
+        </div>
+      </ion-col>
+    </ion-row>
   </ng-template>
 
   <ion-item *ngIf="collection.length > 0">

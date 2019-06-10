@@ -5,7 +5,8 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let user of result" (click)="goToProfileOf(user.username)">
-      <ion-label style="font-size: 15px">{{ user.username }}</ion-label>
+      <ion-icon name="contact" style="color: rgb(185, 183, 183)" slot="start"></ion-icon>
+      <ion-label style="font-size: 16px">{{ user.username }}</ion-label>
       <ion-icon name="remove"></ion-icon>
     </ion-item>
   </ion-list>
