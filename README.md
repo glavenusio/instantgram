@@ -9,6 +9,6 @@ This app was made using ionic <img align="center" width="25" height="25" src="ht
 </p>
 
 ## Features
-1. Upload image / multiple image from gallery or camera with cordova plugins.
-2. Support slide image on multi images on single page.
-3. Users can add new comment to the post like normal instagram app.
+1. Upload image / multiple images with preview from gallery or camera with cordova plugins.
+2. Users can add new comment to the post like normal instagram app.
+3. Support slide image on multi images on single page.
